@@ -18,10 +18,14 @@ jobs:
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v18
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+
         with:
           application_name: docker-gh
           environment_name: Dockergh-env
-          existing_bucket_name: elasticbeanstalk-us-east-1-923445559289
+          existing_bucket_name: elasticbeanstalk-us-east-1-845225824536
           region: us-east-1
           version_label: ${{ github.sha }}
           deployment_package: deploy.zip
